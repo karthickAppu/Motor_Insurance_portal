@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  branch: {
+  branchcode: {
     type: String,
     required: true,
   },

@@ -1,14 +1,19 @@
 const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
 require("dotenv").config();
 const mongoose = require("mongoose");
 
-
-//const authRoutes = require("./routes/authRoutes");
+const authRoutes = require("./routes/authRouter");
+const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
 
 //middleware
+app.use(cors());
+// Middleware to parse JSON data
+app.use(bodyParser.json());
 app.use((req,res,next) => {
     console.log("path " + req.path + "method " + req.method);
     next();
@@ -18,8 +23,10 @@ app.use((req,res,next) => {
 app.get('/',(req,res)=>{
     res.send("Motor Insurance");
 });
+app.get('/PolicyDetails',(req,res)=>{
+    res.send("Welcome to Policy Details");
+});
 
-//Chumma dummy
 
 //db connection
 mongoose.connect(process.env.MANGO_URI)
@@ -28,3 +35,6 @@ mongoose.connect(process.env.MANGO_URI)
         console.log("DB is connected sucessfully and Listening to port " + process.env.PORT);
 });
 }).catch((error) => console.log(error));
+
+app.use("/auth", authRoutes);
+app.use("/users", userRoutes);

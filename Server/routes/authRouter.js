@@ -5,8 +5,6 @@ const jwt = require("jsonwebtoken");
 
 const User = require("../models/userModel"); // Import your user model
 
-// Admin Login route
-
 
 // User Login route
 router.post("/login", async (req, res) => {

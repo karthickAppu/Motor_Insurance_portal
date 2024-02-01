@@ -29,6 +29,8 @@ export const AuthProvider = ({ children }) => {
       } else {
         throw new Error("Invalid username or password");
       }
+      
+    
     } catch (error) {
       console.error("Error during login:", error);
       throw error;
