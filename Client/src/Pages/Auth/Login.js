@@ -20,7 +20,7 @@ function Login() {
     try {
       await login(username, password, branchcode)
       .then(res=>
-            history("/PolicyDetails",{state:{id:username}}))
+            history("/home",{state:{id:username}}))
       // Redirect to the dashboard or other protected routes on successful login
     } catch (error) {
       setError(error.message);

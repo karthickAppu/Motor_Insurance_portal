@@ -3,7 +3,11 @@ import axios from "axios";
 import { useAuth } from "./auth";
 import { useNavigate } from "react-router-dom";
 
-const RegisterForm = () => {
+
+
+function RegisterForm() {
+  const history=useNavigate();
+
   const { register } = useAuth();
   const [formData, setFormData] = useState({
     password: "",
@@ -51,6 +55,10 @@ const RegisterForm = () => {
       });
   };
 
+  const gotoLogin = () => {
+    history("/login");
+  }
+
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <h1 className="text-3xl font-bold mb-4">Please Register Here</h1>
@@ -72,6 +80,18 @@ const RegisterForm = () => {
         >
           Register
         </button>
+        <section class=""><div class="grid grid-cols-2 py-2 px-4">
+        <div class="py-2 px-4">
+          <label> Registered? </label>
+        </div>
+        <div class="">
+        <button
+          onClick={gotoLogin}
+          className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+        >
+          Go To Login
+        </button></div>
+        </div></section>
       </div>
     </div>
   );

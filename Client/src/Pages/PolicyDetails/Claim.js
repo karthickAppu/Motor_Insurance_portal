@@ -1,7 +1,7 @@
 import React from "react"
 import {useLocation, useNavigate} from 'react-router-dom';
 
-function PolicyDetails (){
+function Claim (){
    // const location=useLocation()
 
     return (
@@ -13,4 +13,4 @@ function PolicyDetails (){
     )
 }
 
-export default PolicyDetails
+export default Claim
