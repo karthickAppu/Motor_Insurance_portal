@@ -60,8 +60,17 @@ function RegisterForm() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-3xl font-bold mb-4">Please Register Here</h1>
+    <div className="flex flex-col flex-wrap m-4 justify-center">
+      <section>
+        <div className="grid grid-cols-2 flex flex-wrap m-4 justify-center">
+          <div class="items-center justify-center">
+          <img
+                  className="lg:h-100 md:h-full w-[500px] object-cover object-center pl-20"
+                  src="https://img.freepik.com/free-vector/app-development-concept-with-flat-deisng_23-2147852844.jpg?w=740&t=st=1706913563~exp=1706914163~hmac=eff974aa02d71ece93e9545c33fc62e3759ca81c9cdb01d16ba0ebe75e427d85"
+                  alt="blog"/>
+          </div>
+          <div class="items-center justify-center">
+          <h1 className="text-3xl text-gray-800 font-bold mb-8 pl-6"> Please Register Here </h1>
       <div className="w-80">
         {Object.keys(formData).map((field) => (
           <input
@@ -93,6 +102,9 @@ function RegisterForm() {
         </button></div>
         </div></section>
       </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

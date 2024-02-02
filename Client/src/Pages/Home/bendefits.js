@@ -4,7 +4,7 @@ const BenefitIsu = () => {
   return (
     <div>
       <div className="text-gray-600 body-font">
-        <div className="container px-5 pt-48 mx-auto">
+        <div className="container px-5 pt-12 mx-auto">
           <div className="font-md text-green-500 font-bold text-center my-3">
             Benefits of Motor Insurance
           </div>
@@ -20,12 +20,12 @@ const BenefitIsu = () => {
               <div className="h-[450px] border-2 bg-white border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
                 <img
                   className="lg:h-58 md:h-[250px] w-full object-cover object-center"
-                  src="https://img.freepik.com/free-photo/hmm-let-me-think-thoughtful-young-woman-planning-something-looking-upper-left-corner-pondering-imaging-things-empty-space-white-background_176420-53378.jpg?size=626&ext=jpg&ga=GA1.1.464284625.1688563657&semt=sph"
+                  src="https://insurance-b2c-assets.s3.ap-south-1.amazonaws.com/uploads/news/image/mceu_2943614311642857633940_1642857635.jpg"
                   alt="blog"
                 />
                 <div className="p-6">
                   <h1 className="title-font text-2xl font-medium text-sky-600 mb-3">
-                    What is Health Insurance?
+                    Two Wheeler Insurance
                   </h1>
 
                   <div className="flex items-center flex-wrap ">
@@ -40,37 +40,16 @@ const BenefitIsu = () => {
               <div className="h-[450px] border-2 bg-white border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
                 <img
                   className="lg:h-58 md:h-[250px] w-full object-cover object-center"
-                  src="https://img.freepik.com/premium-photo/portrait-indian-asian-young-family-four-sitting-white-flour-against-white-background-looking-camera_466689-8047.jpg?size=626&ext=jpg&ga=GA1.1.464284625.1688563657&semt=sph"
+                  src="https://img.freepik.com/free-vector/car-ownership-usage-isometric-composition-with-bubble-protected-car-icon-with-sign-paper-agreement_1284-54551.jpg?w=740&t=st=1706916300~exp=1706916900~hmac=2c3dd908682467d1a0984bd87f7871b4529524a7fb724f383c93ddf1984ad7fc"
                   alt="blog"
                 />
                 <div className="p-6">
                   <h1 className="title-font text-2xl font-medium text-sky-600  mb-3">
-                    Family Health Insurance ?
+                    Car Insurance Benefits
                   </h1>
 
                   <div className="flex items-center flex-wrap ">
                     <button className="inline-flex text-white bg-green-500  border-0 py-2 px-6 focus:outline-none hover:bg-green-500 rounded text-lg">
-                      View More
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-4 md:w-[30]">
-              <div className="h-[450px] border-2 bg-white border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-                <img
-                  className="lg:h-58 md:h-[250px] w-full object-cover object-center"
-                  src="https://img.freepik.com/free-photo/young-woman-testing-car-car-showroom_1303-17732.jpg?size=626&ext=jpg&ga=GA1.1.464284625.1688563657&semt=ais"
-                  alt="blog"
-                />
-                <div className="p-6">
-                  <h1 className="title-font text-2xl font-medium text-sky-600 mb-3">
-                    What is Personal <br /> Accident Insurance?
-                  </h1>
-
-                  <div className="flex items-center flex-wrap ">
-                    <button className="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-500  rounded text-lg">
                       View More
                     </button>
                   </div>

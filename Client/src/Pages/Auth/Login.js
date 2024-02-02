@@ -28,10 +28,10 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-green-50 py-6 flex flex-col justify-center sm:py-12">
+    <div className="min-h-screen py-6 flex flex-col justify-center sm:py-2">
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
         <div className="absolute inset-0 bg-gradient-to-r from-green-300 to-green-600 shadow-2xl transform sm:rounded-3xl"></div>
-        <div className="relative px-4 py-10 bg-white shadow-2xl sm:rounded-3xl sm:p-20">
+        <div className="relative px-2 py-6 bg-white shadow-2xl sm:rounded-3xl sm:p-20">
           <div className="max-w-md mx-auto">
             <div>
               <h1 className="text-2xl font-semibold">
