@@ -54,6 +54,18 @@ function Dashboard (){
                         className="bg-green-500 py-2 px-6 text-white font-bold uppercase text-xs rounded hover:bg-green-500 hover:text-white-800">
                         Renewal
                     </a></div>
+                    <div className="py-2 px-4">
+                    <a
+                        href="/Reinsure"
+                        className="bg-green-500 py-2 px-6 text-white font-bold uppercase text-xs rounded hover:bg-green-500 hover:text-white-800">
+                        Reinsure
+                    </a></div>
+                    <div className="py-2 px-4">
+                    <a
+                        href="/Facultative"
+                        className="bg-green-500 py-2 px-6 text-white font-bold uppercase text-xs rounded hover:bg-green-500 hover:text-white-800">
+                        Facultative
+                    </a></div>
                     </div>             
         </div>       
     )
