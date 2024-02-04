@@ -21,7 +21,7 @@ function PolicyDetails() {
     branchCode: "",
     fromDate:"",
     toDate: "",
-    policyStatus: "",
+    policyStatus: "Incomplete",
     premiumRate: "",
     policyNo:"",
     customerName:"",
@@ -110,6 +110,20 @@ function PolicyDetails() {
     axios
     .post("http://localhost:8080/policy/create", formData)
     .then((response) => {
+      const[policyStatus,policyNo]=[
+        response.data.policy.policyStatus,
+        response.data.policy.policyNo];
+
+        setFormData({
+          policyStatus:policyStatus,
+          policyNo:policyNo
+        });
+
+      // const [...newFormData]= response.data.policy
+      // setFormData((prevFormData) => ({
+      //   ...prevFormData,
+      //   ...newFormData
+      // }));
       console.log("Policy created successfully", response.data);
       window.alert("Policy registered successfully!");
       //const { password, username } = formData;
@@ -119,7 +133,7 @@ function PolicyDetails() {
     .catch((error) => {
       console.error("Error creating Policy: ", error);
 
-      let errorMessage = "Go to Log In page and Enter your credentials";
+      let errorMessage = "Error creating Policy...";
 
       if (
         error.response &&
@@ -139,6 +153,13 @@ function PolicyDetails() {
     axios
     .put("http://localhost:8080/policy/approve/"+formData.policyNo+"")
     .then((response) => {
+      const[policyStatus]=[
+        response.data.policy.policyStatus]
+
+        setFormData({
+          policyStatus:policyStatus,
+        });
+
       console.log("Policy approved successfully", response.data);
       window.alert("Policy approved successfully!");
       //const { password, username } = formData;
@@ -148,7 +169,7 @@ function PolicyDetails() {
     .catch((error) => {
       console.error("Error Approving Policy: ", error);
 
-      let errorMessage = "Error Approving Policy";
+      let errorMessage = "Error Approving Policy...";
 
       if (
         error.response &&
@@ -240,10 +261,10 @@ function PolicyDetails() {
                   //onChange={(event)=>setbranchcode(event.target.value)}
                   class="w-full px-4 py-2 mb-2 rounded border"
                 />
-                <input readonly
+                <input
                   name='policyNo' 
                   value={formData.policyNo} 
-                  //onChange={handleInputChange}
+                  onChange={handleInputChange}
                   class="w-full px-4 py-2 mb-2 rounded border"
                 />
                 <input
