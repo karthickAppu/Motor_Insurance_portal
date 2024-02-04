@@ -7,7 +7,7 @@ function PolicyDetails() {
   const [formData, setFormData] = useState({
     agentName: "",
     branchCode: "",
-    fromDate: "",
+    fromDate:"",
     toDate: "",
     status: "",
     premiumRate: "",
@@ -67,7 +67,34 @@ function PolicyDetails() {
   }
 
   const handleClear = () => {
-	    
+    setFormData({
+      agentName: "",
+        branchCode: "",
+        fromDate: "",
+        toDate: "",
+        status: "",
+        premiumRate: "",
+      policyNo:""
+    })
+    setCustomerFormData({
+      customerName: "",
+      customerAge: "",
+      customerDOB: "",
+      customerName: "",
+      customerEmail: "",
+      customerAddress: "",
+      customerCity:"",
+      customerPincode:""
+    })
+    setRiskFormData({
+      vehicleName: "",
+      vehicleNo: "",
+      chassisNo: "",
+      sumInsure: "",
+      vehicleColor: "",
+      vehicleMake: "",
+      vehicleLife:""
+    })
   }
 
   const handleBack = () => {
