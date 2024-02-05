@@ -7,6 +7,7 @@ import { AuthProvider } from "./Pages/Auth/auth";
 import Login from "./Pages/Auth/Login";
 import RegisterForm from "./Pages/Auth/Register";
 import PolicyDetails from "./Pages/PolicyDetails/policyDetails";
+import Summary from "./Pages/PolicyDetails/summary";
 
 import Home from "./Pages/Home/home.js";
 import Contact from "./Pages/Home/contact.js";

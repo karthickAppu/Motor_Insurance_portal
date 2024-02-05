@@ -44,3 +44,29 @@ exports.approvePolicy = async (req, res) => {
   }
 };
 
+exports.getPremiumSummary = async (req, res) => {
+  try {
+    const { policyNo } = req.params;
+    const policy = await Policy.findOne({ policyNo });
+
+    const premiumAmount=(policy.sumInsure * policy.premiumRate)/100;
+    const agentCommission=premiumAmount * 0.1;
+    const GST=premiumAmount * 1.8;
+    const totalAmount=premiumAmount+GST-agentCommission;
+
+    const premiumSummary=
+    {
+      sumInsure:policy.sumInsure,
+      premiumRate:policy.premiumRate,
+      premiumAmount:premiumAmount,
+      agentCommission:agentCommission,
+      GST:GST,
+      totalAmount:totalAmount
+    }
+
+    return res.status(200).json(premiumSummary);
+  } catch (err) {
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};
+

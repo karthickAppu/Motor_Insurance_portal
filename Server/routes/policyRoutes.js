@@ -12,5 +12,8 @@ router.post(
 );
 
 router.put("/approve/:policyNo", policyController.approvePolicy);
+router.get("/summary/:policyNo", policyController.getPremiumSummary);
+
+
 
 module.exports = router;
