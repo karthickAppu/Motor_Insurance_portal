@@ -1,20 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 
 function PolicyDetails() {
 
   const history=useNavigate();
-
-  // const [formData, setFormData] = useState({
-  //     agentName: "",
-  //     branchCode: "",
-  //     fromDate:"",
-  //     toDate: "",
-  //     status: "",
-  //     premiumRate: "",
-  //     policyNo:""
-  // });
 
   const [formData, setFormData] = useState({
     agentName: "",
@@ -41,52 +32,6 @@ function PolicyDetails() {
     vehicleAge:""
   })
 
-  // const [branchcode, setbranchcode] = useState("");
-  // const [policyno, setpolicyno] = useState("");
-  // const [fromdate, setfromdate] = useState("");
-  // const [todate, settodate] = useState("");
-  // const [Policystatus, setPolicystatus] = useState("");
-  // const [Premiumrate, setPremiumrate] = useState("");
-
-
-  // const [customername, setcustomername] = useState("");
-  // const [customerdob, setcustomerdob] = useState("");
-  // const [customerage, setcustomerage] = useState("");
-  // const [customerno, setcustomerno] = useState("");
-  // const [customeremail, setcustomeremail] = useState("");
-  // const [customeraddress, setcustomeraddress] = useState("");
-  // const [customercity, setcustomercity] = useState("");
-  // const [customerpincode, setcustomerpincode] = useState("");
-
-  // const [vehiclename, setvehiclename] = useState("");
-  // const [vehicleno, setvehicleno] = useState("");
-  // const [chassisno, setchassisno] = useState("");
-  // const [suminsure, setsuminsure] = useState("");
-  // const [vehiclecolour, setvehiclecolour] = useState("");
-  // const [vehiclemfg, setvehiclemfg] = useState("");
-  // const [vehicleage, setvehicleage] = useState("");
-
-    //const [customerFormData, setCustomerFormData] = useState({
-    //customerName: "",
-    //customerAge: "",
-    //customerDOB: "",
-    //customerName: "",
-    //customerEmail: "",
-    //customerAddress: "",
-    //customerCity:"",
-    //customerPincode:""
-    //});
-
-  // const [riskFormData, setRiskFormData] = useState({
-  //   vehicleName: "",
-  //   vehicleNo: "",
-  //   chassisNo: "",
-  //   sumInsure: "",
-  //   vehicleColor: "",
-  //   vehicleMake: "",
-	//   vehicleLife:""
-  // });
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -95,40 +40,20 @@ function PolicyDetails() {
     }));
   };
 
-  // const handleCustomerChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setCustomerFormData({ ...customerFormData, [name]: value });
-  // }; 
-
-  // const handleRiskChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setRiskFormData({ ...riskFormData, [name]: value });
-  // }; 
-
   const handleSave = (event) => {
     event.preventDefault();
     axios
     .post("http://localhost:8080/policy/create", formData)
     .then((response) => {
       const[policyStatus,policyNo]=[
-        response.data.policy.policyStatus,
-        response.data.policy.policyNo];
-
-        setFormData({
+          response.data.policy.policyStatus,
+          response.data.policy.policyNo];
+      setFormData({
           policyStatus:policyStatus,
           policyNo:policyNo
-        });
-
-      // const [...newFormData]= response.data.policy
-      // setFormData((prevFormData) => ({
-      //   ...prevFormData,
-      //   ...newFormData
-      // }));
+      });
       console.log("Policy created successfully", response.data);
       window.alert("Policy registered successfully!");
-      //const { password, username } = formData;
-      //register( password, username);
-      //navigate("/");
     })
     .catch((error) => {
       console.error("Error creating Policy: ", error);
@@ -153,24 +78,16 @@ function PolicyDetails() {
     axios
     .put("http://localhost:8080/policy/approve/"+formData.policyNo+"")
     .then((response) => {
-      const[policyStatus]=[
-        response.data.policy.policyStatus]
-
-        setFormData({
-          policyStatus:policyStatus,
-        });
-
+      console.log("Response code from server", response.code);
+      //get policy status from response and set
+      const[policyStatus]=[response.data.policy.policyStatus]
+      setFormData({policyStatus:policyStatus});
       console.log("Policy approved successfully", response.data);
       window.alert("Policy approved successfully!");
-      //const { password, username } = formData;
-      //register( password, username);
-      //navigate("/");
     })
     .catch((error) => {
       console.error("Error Approving Policy: ", error);
-
       let errorMessage = "Error Approving Policy...";
-
       if (
         error.response &&
         error.response.data &&
@@ -183,10 +100,34 @@ function PolicyDetails() {
     });
   }
 
-  const handleReject = () => {
-
+  const handleReject = (event) => {
+    event.preventDefault();
+    axios
+    .put("http://localhost:8080/policy/reject/"+formData.policyNo+"")
+    .then((response) => {
+      console.log("Response code from server", response.code);
+      //get policy status from response and set
+      const[policyStatus]=[response.data.policy.policyStatus]
+      setFormData({policyStatus:policyStatus});
+      console.log("Policy rejected successfully", response.data);
+      window.alert("Policy rejected!");
+    })
+    .catch((error) => {
+      console.error("Error Rejecting Policy: ", error);
+      let errorMessage = "Error Rejecting Policy...";
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.error
+      ) {
+        // If the server sends an error message, use it
+        errorMessage = error.response.data.error;
+      }
+      window.alert(errorMessage);
+    });
   }
 
+  //Todo
   const handlePremiumSummary = () => {
 
   }
@@ -226,18 +167,18 @@ function PolicyDetails() {
   return (
 	<div class="min-h-screen">
 
-	<section> 
-		<h1 class="mb-5 pt-2 pb-2 pl-10 text-g font-bold bg-green-500"> Policy Registration </h1>
+	<section class=""> 
+		<h1 class="pt-2 h-12 mb-5 pl-10 text-g text-center justify-center font-bold bg-green-500"> Policy Registration </h1>
 	</section>
 
 	<section>
-    <div className="ml-12 pl-4 justify-center grid grid-cols-3">
+    <div className="ml-8 pl-3 justify-center grid grid-cols-3">
 
       <div class="">
-          	<h1 className=" text-xl text-center text-gray-800 font-bold mb-8 pl-6"> Policy Details </h1>
-            <div className="w-80 flex flex-cols-2">
+          	<h1 className=" text-xl text-center text-gray-800 font-bold mb-8 pl-2"> Policy Details </h1>
+            <div className="w-70 flex flex-cols-2">
               <div class="w-30 px-4 py-2 mb-2">
-              <h2 class="required h-12"> Agent Name </h2>
+              <h2 class="h-12"> Agent Name </h2>
               <h2 class="h-12"> Branch </h2>
               <h2 class="h-12"> Policy No </h2>
               <h2 class="h-12"> start Date </h2>
@@ -303,10 +244,10 @@ function PolicyDetails() {
 		  
 
 		  <div class="">
-          	<h1 className=" text-xl text-center text-gray-800 font-bold mb-8 pl-6"> Customer Details </h1>
-            <div className="w-80 flex flex-cols-2">
+          	<h1 className=" text-xl text-center text-gray-800 font-bold mb-8 pl-2"> Customer Details </h1>
+            <div className="w-70 flex flex-cols-2">
               <div class="w-30 px-4 py-2 mb-2">
-              <h2 class="h-12"> Customer Name </h2>
+              <h2 class="h-12"> Name </h2>
               <h2 class="h-12"> Date Of Birth</h2>
               <h2 class="h-12"> Age </h2>
               <h2 class="h-12"> Contact No </h2>
@@ -370,8 +311,8 @@ function PolicyDetails() {
       </div>
 
 		  <div class="">
-          	<h1 className=" text-xl text-center text-gray-800 font-bold mb-8 pl-6"> Risk Details </h1>
-            <div className="w-80 flex flex-cols-2">
+          	<h1 className=" text-xl text-center text-gray-800 font-bold mb-8 pl-2"> Risk Details </h1>
+            <div className="w-70 flex flex-cols-2">
               <div class="w-30 px-4 py-2 mb-2">
               <h2 class="h-12"> Vehicle Name </h2>
               <h2 class="h-12"> Vehicle No</h2>
