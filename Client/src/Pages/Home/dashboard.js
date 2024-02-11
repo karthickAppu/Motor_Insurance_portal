@@ -1,6 +1,17 @@
 import React from "react";
+import { useAuth } from "../Auth/auth";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard (){
+
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login"); // Redirect to the home page ("/") after logout
+  };
+
 
     return (
         <div className="min-h-screen"
@@ -23,7 +34,7 @@ function Dashboard (){
                 </div>
                 <div className="py-1 px-6 flex">
                     <a
-                        href="/login"
+                        onChange={handleLogout}
                         className="bg-green-600 py-1 px-2 text-white font-bold uppercase text-xs rounded hover:bg-green-500 hover:text-white-800">
                         Logout
                     </a>

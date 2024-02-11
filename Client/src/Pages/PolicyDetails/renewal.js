@@ -11,7 +11,7 @@ function ViewPolicy () {
     const [formData, setFormData] = useState({
         fromDate:"",
         toDate: "",
-        policyNo:""
+        policyNo:"",
       })
 
       const handleInputChange = (e) => {
