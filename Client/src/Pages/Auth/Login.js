@@ -35,7 +35,7 @@ function Login() {
           <div className="max-w-md mx-auto">
             <div>
               <h1 className="text-2xl font-semibold">
-                Login with Motor Insurance Portal
+                Login to Raavan Motor Insurance
               </h1>
             </div>
             <div className="divide-y divide-gray-200">

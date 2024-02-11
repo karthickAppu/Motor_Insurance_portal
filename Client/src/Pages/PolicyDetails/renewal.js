@@ -1,5 +1,5 @@
 import React, { useState ,useEffect} from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function ViewPolicy () {
@@ -22,6 +22,10 @@ function ViewPolicy () {
         }));
       };
 
+      const handleViewPolicy=()=>{
+        history("/ViewPolicy");
+      }
+
       const handleSearch = (event) => {
         axios.get('http://localhost:8080/policy/getPolicy/'+formData.policyNo)
         .then((response) => {
@@ -30,11 +34,13 @@ function ViewPolicy () {
             const[fromDate]=[response.data.policy.fromDate]
             const[toDate]=[response.data.policy.toDate]
             const[policyNo]=[response.data.policy.policyNo]
+            const[customerContact]=[response.data.policy.customerContact]
 
             setFormData({
               fromDate:fromDate,
               toDate:toDate,
-              policyNo:policyNo
+              policyNo:policyNo,
+              customerContact:customerContact
           });
           })
           .catch((error) => {
@@ -72,7 +78,8 @@ function ViewPolicy () {
     axios
     .put("http://localhost:8080/policy/renew/"+formData.policyNo+"",{
         "fromDate":formData.fromDate,
-        "toDate":formData.toDate
+        "toDate":formData.toDate,
+        "customerContact":formData.customerContact
     })
     .then((response) => {
       console.log("Response code from server", response.code);
@@ -150,11 +157,13 @@ return(
     <div className="ml-8 pl-3 justify-center grid grid-cols-3">
 
       <div class="">
-          	<h1 className=" text-xl text-center text-gray-800 font-bold mb-8 pl-2"> Policy Renewal </h1>
+          	<h1 className=" text-xl text-center text-gray-800 font-bold mb-8 pl-2"> Specify Renewal Details </h1>
             <div className="w-70 flex flex-cols-2">
               <div class="w-30 px-4 py-2 mb-2">
+              
               <h2 class="h-12"> New Start Date </h2>
               <h2 class="h-12"> New End Date </h2>
+              <h2 class="h-12"> Customer Contact </h2>
               
               </div>
               <div class="w-40">
@@ -172,8 +181,22 @@ return(
                   onChange={handleInputChange}
                   class="w-full px-4 py-2 mb-2 rounded border"
                 />
+                <input
+                  name='customerContact' 
+                  value={formData.customerContact}
+                  onChange={handleInputChange}
+                  class="w-full px-4 py-2 mb-2 rounded border"
+                />
+                
               </div>
+
             </div>
+            <button
+                onClick={handleViewPolicy}
+                className="w-55 h-10 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+                >
+                View Renewed Policy            
+              </button>
           </div>
 		  
 		  <div></div>

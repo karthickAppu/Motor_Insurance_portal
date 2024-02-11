@@ -14,6 +14,7 @@ import ViewPolicy from "./Pages/PolicyDetails/viewPolicy";
 
 import Home from "./Pages/Home/home.js";
 import Contact from "./Pages/Home/contact.js";
+import BenefitIsu from "./Pages/Home/bendefits";
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/home" element={<Home/>}/>
           <Route path="*" element={<Error />} />
           <Route path='/contact' element={<Contact />} />
+          <Route path='/benefits' element={<BenefitIsu />} />
         </Routes>
       </AuthProvider>
     </div>

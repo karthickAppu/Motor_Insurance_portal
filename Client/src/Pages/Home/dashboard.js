@@ -27,23 +27,38 @@ function Dashboard (){
                 <div className="flex justify-end">
                 <div className="py-1 px-6 flex">
                     <a
+                        href="/benefits"
+                        className="py-1 px-200 text-green-500 font-bold uppercase text-xs hover:bg-green-700 hover:text-green-500">
+                        About Us
+                    </a>
+                </div>
+                <div className="py-1 px-6 flex">
+                    <a
+                        href="/benefits"
+                        className="py-1 px-200 text-green-500 font-bold uppercase text-xs hover:bg-green-700 hover:text-green-500">
+                        Benefits
+                    </a>
+                </div>
+                <div className="py-1 px-6 flex">
+                    <a
                         href="/contact"
                         className="py-1 px-200 text-green-500 font-bold uppercase text-xs hover:bg-green-700 hover:text-green-500">
                         Contact Us
                     </a>
                 </div>
                 <div className="py-1 px-6 flex">
-                    <a
-                        onChange={handleLogout}
-                        className="bg-green-600 py-1 px-2 text-white font-bold uppercase text-xs rounded hover:bg-green-500 hover:text-white-800">
-                        Logout
-                    </a>
+                <button
+                    onClick={handleLogout}
+                    className="w-28 h-8 bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-4 rounded"
+                    >
+                    Logout
+                    </button>
                 </div>
                 </div>
             </section>           
             <div className="md:w-1/8 pl-[70px] py-1 px-4">
                     <p className="text-3xl font-bold mb-7 text-gray-900 leading-none">
-                        Welcome to Motor Insurance
+                        Welcome to Raavan Motor Insurance
                     </p>
             </div>
                     <div className="md:w-1/4 pl-[80px] relative">
