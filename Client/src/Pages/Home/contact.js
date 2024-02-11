@@ -6,8 +6,10 @@ function Contact (){
     return (
         <div class="">
             <div>
-                
-              <h1 className="pt-4 pb-4 text-center text-gray-800 font-bold text-4xl">
+            <div className="font-md text-green-500 font-bold text-center my-3">
+            We Provide Guidance to Stay Protected 
+          </div>
+              <h1 className="pt-4 pb-4 text-center text-gray-600 font-bold text-4xl">
                 Contact Us
               </h1>
                 <img

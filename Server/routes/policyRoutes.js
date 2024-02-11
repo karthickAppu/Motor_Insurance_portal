@@ -12,8 +12,11 @@ router.post(
 );
 
 router.put("/approve/:policyNo", policyController.approvePolicy);
+router.put("/reject/:policyNo", policyController.rejectPolicy);
 router.get("/summary/:policyNo", policyController.getPremiumSummary);
 
+router.get("/getPolicy/:policyNo",policyController.getPolicy);
 
+router.put("/renew/:policyNo", policyController.renewPolicy);
 
 module.exports = router;

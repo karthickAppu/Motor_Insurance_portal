@@ -1,18 +1,6 @@
 // userModel.js
 const mongoose = require("mongoose");
 
-function getNextSequence(name) {
-  var ret =  mongoose.counters.findAndModify(
-         {
-           query: { _id: name },
-           update: { $inc: { seq: 2024000001} },
-           new: true
-         }
-  );
-
-  return ret.seq;
-}
-
 const PolicySchema = new mongoose.Schema({
 
   agentName: {
@@ -40,7 +28,7 @@ const PolicySchema = new mongoose.Schema({
 
   policyStatus: {
     type: String,
-    default:"Incomplete",
+    default:"Draft",
     required: true,
   },
   premiumRate: {
@@ -49,17 +37,13 @@ const PolicySchema = new mongoose.Schema({
   },
   customerName: {
     type: String, 
-    required: true,//unique: true,summa
+    required: true,
   },
   customerDob: {
     type: Date,
     required: true,
   },
 
-  customerAge: {
-  type: Number,
-  required: true,
-  },
    customerContact: {
     type:  Number,
     required: true,
@@ -102,10 +86,6 @@ const PolicySchema = new mongoose.Schema({
   },
   vehicleMfg: {
     type:  Date,
-    required: true,
-  },
-  vehicleAge: {
-    type:  Number,
     required: true,
   }
 });

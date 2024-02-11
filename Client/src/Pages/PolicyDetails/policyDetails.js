@@ -1,10 +1,8 @@
 import React, { useState ,useEffect} from "react";
-import {Routes, Route, renderMatches } from "react-router-dom";
 import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
 
-import Summary from "./summary";
 
 function PolicyDetails () {
 
@@ -16,12 +14,11 @@ function PolicyDetails () {
     branchCode: "",
     fromDate:"",
     toDate: "",
-    policyStatus: "Incomplete",
+    policyStatus: "Draft",
     premiumRate: "",
     policyNo:"",
     customerName:"",
     customerDob:"",
-    customerAge:"",
     customerContact:"",
     customerEmail:"",
     customerAddress:"",
@@ -32,8 +29,7 @@ function PolicyDetails () {
     chassisNo:"",
     sumInsure:"",
     vehicleColour:"",
-    vehicleMfg:"",
-    vehicleAge:""
+    vehicleMfg:""
   })
 
   const [summaryData,setsummaryData] = useState({
@@ -141,14 +137,24 @@ function PolicyDetails () {
     });
   }
 
-  const handleSummary=(event) =>{
+  const handleSummary=() =>{
   axios.get('http://localhost:8080/policy/summary/4')
         .then((response) => {
             console.log("Response code from server", response.code);
             //get policy status from response and set
             const[sumInsure]=[response.data.sumInsure]
+            const[premiumRate]=[response.data.premiumRate]
+            const[premiumAmount]=[response.data.premiumAmount]
+            const[agentCommission]=[response.data.agentCommission]
+            const[GST]=[response.data.GST]
+            const[totalAmount]=[response.data.totalAmount]
             setsummaryData({
-              sumInsure:sumInsure
+              sumInsure:sumInsure,
+              premiumRate:premiumRate,
+              premiumAmount:premiumAmount,
+              agentCommission:agentCommission,
+              GST:GST,
+              totalAmount:totalAmount
           });
           })
   }
@@ -165,7 +171,6 @@ function PolicyDetails () {
     policyNo:"",
     customerName:"",
     customerDob:"",
-    customerAge:"",
     customerContact:"",
     customerEmail:"",
     customerAddress:"",
@@ -176,8 +181,7 @@ function PolicyDetails () {
     chassisNo:"",
     sumInsure:"",
     vehicleColour:"",
-    vehicleMfg:"",
-    vehicleAge:""
+    vehicleMfg:""
     })
   }
 
@@ -202,11 +206,10 @@ function PolicyDetails () {
               <h2 class="h-12"> Agent Name </h2>
               <h2 class="h-12"> Branch </h2>
               <h2 class="h-12"> Policy No </h2>
-              <h2 class="h-12"> start Date </h2>
+              <h2 class="h-12"> Start Date </h2>
               <h2 class="h-12"> End Date </h2>
               <h2 class="h-12"> Policy status </h2>
-              <h2 class="h-12"> Premium Rate </h2>
-              
+              <h2 class="h-12"> Premium Rate </h2>            
               </div>
               <div class="w-40">
                 <input
@@ -263,14 +266,12 @@ function PolicyDetails () {
             </div>
           </div>
 		  
-
 		  <div class="">
           	<h1 className=" text-xl text-center text-gray-800 font-bold mb-8 pl-2"> Customer Details </h1>
             <div className="w-70 flex flex-cols-2">
               <div class="w-30 px-4 py-2 mb-2">
               <h2 class="h-12"> Name </h2>
               <h2 class="h-12"> Date Of Birth</h2>
-              <h2 class="h-12"> Age </h2>
               <h2 class="h-12"> Contact No </h2>
               <h2 class="h-12"> Email-Id </h2>
               <h2 class="h-12"> Address </h2>
@@ -288,12 +289,6 @@ function PolicyDetails () {
                   name='customerDob' 
                   type="date"
                   value={formData.customerDob}
-                  onChange={handleInputChange}
-                  class="w-full px-4 py-2 mb-2 rounded border"
-                />
-                <input
-                  name='customerAge' 
-                  value={formData.customerAge} 
                   onChange={handleInputChange}
                   class="w-full px-4 py-2 mb-2 rounded border"
                 />
@@ -341,7 +336,6 @@ function PolicyDetails () {
               <h2 class="h-12"> Sum Insure </h2>
               <h2 class="h-12"> Vehicle  color </h2>
               <h2 class="h-12"> Vehicle M.F.G </h2>
-              <h2 class="h-12"> Vehicle Age</h2>
               </div>
               <div class="w-40">
               <input required
@@ -378,12 +372,6 @@ function PolicyDetails () {
                 name='vehicleMfg' 
                 type="date"
                 value={formData.vehicleMfg} 
-                onChange={handleInputChange}
-                class="w-full px-4 py-2 mb-2 rounded border"
-              />
-	      <input required
-                name='vehicleAge' 
-                value={formData.vehicleAge} 
                 onChange={handleInputChange}
                 class="w-full px-4 py-2 mb-2 rounded border"
               />
@@ -442,25 +430,56 @@ function PolicyDetails () {
 	</section>
   {route ? 
   <section>
-              <div class="flex flex-cols-2">
-                  <div>
-                      <h6> Sum Insured </h6>
-                      <h6> Premium Rate</h6>
-                      <h6> Premium Amount </h6>
-                      <h6> Agent Commission </h6>
-                      <h6> GST </h6>
-                      <h6> Total Amount </h6>
-                  </div>
-                  <div>
-                      <h6> Testing </h6>
-                      <h6> {summaryData.sumInsure}</h6>
-                      {/* <h6> {Data.premiumRate}</h6>
-                      <h6> {Data.premiumAmount} </h6>
-                      <h6> {Data.agentCommission} </h6>
-                      <h6> {Data.GST} </h6>
-                      <h6> {Data.totalAmount} </h6> */}
-                  </div>
+    <div className="ml-8 pl-3 justify-center grid grid-cols-3 scroll-auto">
+      <div></div>
+      <div>
+    <h1 className=" text-xl text-center text-gray-800 font-bold mb-8 pl-2"> Summary Details </h1>
+    <div className="w-70 flex flex-cols-2">
+              <div class="w-30 px-4 py-2 mb-2">
+              <h2 class="h-12"> Sum Insure </h2>
+              <h2 class="h-12"> Premium Rate </h2>
+              <h2 class="h-12"> Premium Amount </h2>
+              <h2 class="h-12"> Agent Commission </h2>
+              <h2 class="h-12"> GST </h2>
+              <h2 class="h-12"> Net Amount to Customer </h2>
+              
               </div>
+              <div class="w-40">
+                <input
+                  name='sumInsure'
+                  value={summaryData.sumInsure} 
+                  class="w-full px-4 py-2 mb-2 rounded border"
+                />
+                <input
+                  name='premiumRate' 
+                  value={summaryData.premiumRate} 
+                  class="w-full px-4 py-2 mb-2 rounded border"
+                />
+                <input
+                  name='premiumAmount' 
+                  value={summaryData.premiumAmount} 
+                  class="w-full px-4 py-2 mb-2 rounded border"
+                />
+                <input
+                  name='agentCommission' 
+                  value={summaryData.agentCommission} 
+                  class="w-full px-4 py-2 mb-2 rounded border"
+                />
+                <input
+                  name='GST' 
+                  value={summaryData.GST} 
+                  class="w-full px-4 py-2 mb-2 rounded border"
+                />
+                <input
+                  name='totalAmount' 
+                  value={summaryData.totalAmount} 
+                  class="w-full px-4 py-2 mb-2 rounded border"
+                />
+              </div>
+            </div>
+    </div>
+    <div></div>
+    </div>
   </section>
   :null}
   </div>
