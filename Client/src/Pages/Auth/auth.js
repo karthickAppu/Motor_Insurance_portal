@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
       );
       
 
-      if (response.data.token) {
+      if (response.data.token!=null) {
         // Set the user and token in state
         setUser({
           username,
@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
     
     } catch (error) {
       console.error("Error during login:", error);
-      throw error;
+      throw new Error("Invalid username or password");
     }
   };
 

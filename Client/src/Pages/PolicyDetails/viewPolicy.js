@@ -123,7 +123,7 @@ return(
     <div class="min-h-screen">
 
 	<section class=""> 
-		<h1 class="pt-2 h-12 mb-5 pl-10 text-g text-center justify-center font-bold bg-green-500"> Renew Policy </h1>
+		<h1 class="pt-2 h-12 mb-5 pl-10 text-g text-center justify-center font-bold bg-green-500"> View Policy </h1>
 	</section>
 
     <section class=""> 

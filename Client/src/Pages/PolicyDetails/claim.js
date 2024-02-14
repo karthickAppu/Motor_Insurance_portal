@@ -95,7 +95,7 @@ function Claim () {
 
       const handleClaim = (event) => {
         event.preventDefault();
-        window.alert("Cannot Claim! Policy is in probation period")
+        window.alert("Policy Claimed Successfully");
       }
 return(
     <div class="min-h-screen">

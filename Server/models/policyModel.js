@@ -14,7 +14,8 @@ const PolicySchema = new mongoose.Schema({
 
   policyNo: {
     type: Number,
-    required: false,
+    required: true,
+    unique:true
   },
 
   fromDate: {
