@@ -90,7 +90,7 @@ function PolicyDetails () {
     .then((response) => {
       console.log("Response code from server", response.code);
       //get policy status from response and set
-      const[policyStatus]=[response.data.policy.policyStatus]
+      const[policyStatus]=[response.data.updatedpolicy.policyStatus]
       setFormData({policyStatus:policyStatus});
       console.log("Policy approved successfully", response.data);
       window.alert("Policy approved successfully!");
@@ -117,7 +117,7 @@ function PolicyDetails () {
     .then((response) => {
       console.log("Response code from server", response.code);
       //get policy status from response and set
-      const[policyStatus]=[response.data.policy.policyStatus]
+      const[policyStatus]=[response.data.updatedpolicy.policyStatus]
       setFormData({policyStatus:policyStatus});
       console.log("Policy rejected successfully", response.data);
       window.alert("Policy rejected!");
@@ -138,7 +138,7 @@ function PolicyDetails () {
   }
 
   const handleSummary=() =>{
-  axios.get('http://localhost:8080/policy/summary/4')
+  axios.get('http://localhost:8080/policy/summary/'+formData.policyNo)
         .then((response) => {
             console.log("Response code from server", response.code);
             //get policy status from response and set
@@ -166,7 +166,7 @@ function PolicyDetails () {
     branchCode: "",
     fromDate:"",
     toDate: "",
-    policyStatus: "Incomplete",
+    policyStatus: "Draft",
     premiumRate: "",
     policyNo:"",
     customerName:"",
@@ -252,7 +252,7 @@ function PolicyDetails () {
                   name='policyStatus' 
                   value={formData.policyStatus} 
                   readonly
-                  //onChange={handleInputChange}s
+                  //onChange={handleInputChange}
                   //onChange={(event)=>setPolicystatus(event.target.value)}
                   class="w-full px-4 py-2 mb-2 rounded border"
                 />
